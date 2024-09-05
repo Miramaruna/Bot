@@ -11,7 +11,6 @@ from config import TOKEN
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
-
 button_start = [
     [KeyboardButton(text='/play'), KeyboardButton(text='/info'), KeyboardButton(text='/help')]
 ]
@@ -21,10 +20,10 @@ button_play = [
 ]
 
 button_info = [
-    [KeyboardButton(text='Где я научился?')]
+    [KeyboardButton(text='/GEEKS')]
 ]
 
-keyboard = ReplyKeyboardMarkup(keyboard=button_start, resize_keyboard=True)
+keyboard_start = ReplyKeyboardMarkup(keyboard=button_start, resize_keyboard=True)
 keyboard_play = ReplyKeyboardMarkup(keyboard=button_play, resize_keyboard=True)
 keyboard_info = ReplyKeyboardMarkup(keyboard=button_info, resize_keyboard=True)
 
@@ -34,7 +33,7 @@ keyboard_info = ReplyKeyboardMarkup(keyboard=button_info, resize_keyboard=True)
 
 @dp.message(Command("start"))
 async def start_bot(message: Message):
-    await message.reply(f"Привет {message.from_user.first_name}!\nЭто бот мируни\nТут все команды этого бота\nИграть! - /play\nПерезапуск бота - /start\nПомощь - /help\nИнформация - /info", reply_markup=keyboard)
+    await message.reply(f"Привет {message.from_user.first_name}!\nЭто бот мируни\nТут все команды этого бота\nИграть! - /play\nПерезапуск бота - /start\nПомощь - /help\nИнформация - /info", reply_markup=keyboard_start)
 
 @dp.message(Command("help"))
 async def help(message: Message):
@@ -48,9 +47,9 @@ async def play_bot(message: Message):
 async def info(message: Message):
     await message.reply("Привет!\nЭто информация о моем боте\nМой бот обычные слова воспринимает как эхо тоесть он не будет повторять слова\nА будет писать значение по умолчанию как (pon)\nНа этом у меня все!\nУдачи!\n/start \nVersion == 2.1.3", reply_markup=keyboard_info)
 
-@dp.message(Command("Где я научился?"))
+@dp.message(Command("/GEEKS"))
 async def info(message: Message):
-    await message.reply('Научился я этому в учебном месте GEEKS это хорошое место для изучения программирования а также других сфер \nКак дизайн программирования для телефона и т.д\n/start')
+    await message.answer('Научился я этому в учебном месте GEEKS это хорошое место для изучения программирования а также других сфер \nКак дизайн программирования для телефона и т.д\n/start', reply_markup=keyboard_start)
 
 @dp.message(Command("1"))
 async def odin(message: Message):
