@@ -1,3 +1,12 @@
 venv/
 **/config.py
 mana.db
+Bank.db
+bot_dz5
+bot_dz_4
+bot_dz
+lesson_5
+app
+handlers.py
+keyboard.py
+lesson_6
