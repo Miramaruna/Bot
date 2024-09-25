@@ -17,7 +17,7 @@ bot = Bot(token=TOKEN)
 dp = Dispatcher()
 logging.basicConfig(level=logging.INFO)
 
-monitoring = False
+monitoring = False  
 monitoring_ech = False
 monitoring_ltc = False
 chat_id = None
