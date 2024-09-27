@@ -90,7 +90,7 @@ async def start_broadcast(message: Message, state: FSMContext):
     adminy = cur.fetchone()
     c.commit()
     print(adminy)
-    if adminy == 1:
+    if adminy == (1,):
         await message.answer("Введите сообщение для рассылки:")
         await state.set_state(BroadcastForm.waiting_for_message)
     else:
@@ -125,7 +125,7 @@ async def add(callback: CallbackQuery):
 
 @dp.callback_query(F.data == 'de')
 async def de(callback: CallbackQuery):
-    cur.execute(F"UPDATE users SET is_admin = 0 WHERE user_id {callback.from_user.id}")
+    cur.execute(F"UPDATE users SET is_admin = 0 WHERE user_id = {callback.from_user.id}")
     await callback.answer("de")
     await callback.message.answer("Вы теперь не админ")
 
